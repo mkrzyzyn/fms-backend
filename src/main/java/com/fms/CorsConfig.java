@@ -10,21 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfig {
 
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurer() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                System.out.println("CORS configuration is being applied.");
-//                registry.addMapping("/api/offers")
-//                        .allowedOrigins("http://localhost:8000") // Allow requests from this origin
-//                        .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow these HTTP methods
-//                        .allowedHeaders("*"); // Allow all headers
-//
-//            }
-//        };
-//    }
-
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -32,16 +17,9 @@ public class CorsConfig {
 
         // Allow requests from specific origins
         config.addAllowedOrigin("http://localhost:8000");
-
-        // Allow specific HTTP methods (e.g., GET, POST, PUT, DELETE)
-        config.addAllowedMethod("GET");
-        config.addAllowedMethod("POST");
-        config.addAllowedMethod("PUT");
-        config.addAllowedMethod("DELETE");
-        config.addAllowedMethod("OPTIONS");
-
-        // Allow specific headers if needed
-        config.addAllowedHeader("Authorization");
+        config.addAllowedMethod("*");
+        config.addAllowedHeader("*");
+        config.setAllowCredentials(true);
 
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
