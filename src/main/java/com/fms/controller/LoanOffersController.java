@@ -27,10 +27,6 @@ public class LoanOffersController{
         @GetMapping
         public ResponseEntity<List<LoanOffersEntity>> getAllEntries() {
             HttpHeaders headers = new HttpHeaders();
-//            headers.add("Content-Type", "application/json");
-//            headers.add("Access-Control-Allow-Origin", "*");
-//            headers.add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
-//            headers.add("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
             List<LoanOffersEntity> entries = repository.findAll();
             return new ResponseEntity<>(entries, headers, HttpStatus.OK);
         }
